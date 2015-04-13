@@ -1,9 +1,14 @@
 package com.github.vpavlenko.memalarm;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Switch;
+import android.widget.ToggleButton;
 
 
 public class SetAlarmActivity extends ActionBarActivity {
@@ -11,6 +16,7 @@ public class SetAlarmActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("CREATE", "Create Set Alarm");
         setContentView(R.layout.activity_set_alarm);
     }
 
@@ -18,7 +24,7 @@ public class SetAlarmActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_set_alarm, menu);
+        // getMenuInflater().inflate(R.menu.menu_set_alarm, menu);
         return true;
     }
 
@@ -35,5 +41,14 @@ public class SetAlarmActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onActivateToggled(View view) {
+        boolean on = ((Switch) view).isChecked();
+
+        if (on) {
+            Intent intent = new Intent(this, AlarmAlertActivity.class);
+            startActivity(intent);
+        }
     }
 }
